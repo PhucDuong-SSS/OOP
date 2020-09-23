@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let Apple = function() {
+      this.weight = 10;
+      
+      this.decrease = function () {
+        this.weight--;
+      }
+      this.isEmpty = function () {
+        return this.weight == 0;
+      }
+      this.getWeight = function () {
+        return this.weight;
+      }
+    }
+
+    let Humman = function (name, gender, weight ) {
+      this.name = name;
+      this.gender = gender;
+      this.weight = weight;
+
+      this.isMale = function () {
+        return this.gender =="Male"
+      }
+      this.getApple = function(apple) {
+        this.apple = apple;
+      }
+      this.checkApple = function() {
+        return (this.apple.getWeight() > 0)  
+      }
+      this.eat = function() {
+        if(this.checkApple()) {
+          this.weight++;
+          this.apple.weight--;
+        }     
+       
+      }
+      this.say = function(string) {
+        document.write(string);
+      }
+      this.getName = function() {
+        return this.name;
+      }
+      this.setName = function(name) {
+        this.name = name
+      }
+      this.setWeight = function(weight) {
+        this.weight = weight;
+      }
+      this.getWeight =  function() {
+        return this.weight;
+      }
+    }
+
+    let apple1 = new Apple();
+    let humnan1 = new Humman("phuc","Male",60);
+    document.write(`human1 has gender male is ${humnan1.isMale()} <br>`)
+    document.write(`human1 has weight is ${humnan1.getWeight()} <br>`)
+    humnan1.say("ngon ngon <br>")
+    document.write(`apple has weight is ${apple1.getWeight()} <br>`)
+    humnan1.getApple(apple1)
+    humnan1.eat();
+    document.write(`human1 has weight after eating ${humnan1.getWeight()} <br>`)
+    document.write(`apple1 has weight after eating ${apple1.getWeight()} <br>`)
+  </script>
+</body>
+</html>

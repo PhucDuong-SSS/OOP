@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let Tivi = function (currentChannel, currentVolume) {
+        this.currentChannel = currentChannel;
+        this.currentVolume = currentVolume;
+
+        this.getStatusTv = function () {
+          console.log(`Kênh hiện tại ${this.currentChannel}`);
+          console.log(`Âm lượng hiện tại ${this.currentVolume}`);
+          console.log(`Trạng thái hiện tại ${this.status}`);
+        };
+      };
+
+      let Remote = function (id) {
+        this.id = id;
+
+        this.connectTivi = function (tivi) {
+          this.tivi = tivi;
+        };
+        this.turnOn = function () {
+          this.tivi.status = true;
+          this.tivi.getStatusTv();
+        };
+        this.turnOff = function () {
+          this.tivi.status = false;
+          console.log(`Bye`);
+        };
+
+        this.changeChannel = function (channel) {
+          if (this.tivi.status) {
+            this.tivi.currentChannel = channel;
+            this.tivi.getStatusTv();
+          } else {
+            console.log(`Tivi chưa bật`);
+          }
+        };
+
+        this.increaseVolume = function (volume) {
+          if (this.tivi.status) {
+            this.tivi.currentVolume += 2;
+            this.tivi.getStatusTv();
+          } else {
+            console.log(`Tivi chưa bật`);
+          }
+        };
+        this.decreaseVolume = function (volume) {
+          if (this.tivi.status) {
+            this.tivi.currentVolume -= 2;
+            this.tivi.getStatusTv();
+          } else {
+            console.log(`Tivi chưa bật`);
+          }
+        };
+      };
+      let tivi = new Tivi(3, 6);
+      let remote = new Remote(123);
+      remote.connectTivi(tivi);
+      remote.turnOn();
+      remote.changeChannel(4);
+      remote.decreaseVolume();
+      remote.increaseVolume();
+      remote.turnOff();
+    </script>
+  </body>
+</html>

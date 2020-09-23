@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practice class and object</title>
+</head>
+<body>
+  <script>
+    function student(id, name, address){
+      this.id = id;
+      this.name = name;
+      this.adress = address;
+      this.getInfor = function() {
+        return `Id = ${this.id} Name= ${this.name} Address = ${this.address}`
+      }
+      let student = new student(1,Phuc,Hue)
+      console.log(student.getInfor())
+
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[Bài tập] Phát triển chương trình thể hiện sự tương tác giữa hai đối tượng: công tắc và bóng đèn<title>
+</head>
+<body>
+  <script>
+    let ElectricLamp = function (name) {
+      this.name = name;
+      this.status = false;
+
+      this.turnOn = function () {
+        if(this.status) {
+          console.log("Den dang sang roi ");
+        }
+        else {
+          this.status = true;
+          console.log("Den da duoc bat")
+        }        
+      }
+
+      this.turnOff = function () {
+        if(this.status) {
+          this.status = false;
+          console.log("Den da dc tat")
+        }
+        else {
+          console.log("Den dang tat roi")
+        }
+        
+      }
+    }
+
+    let SwitchButton = function () {      
+
+      this.connectToLamp = function (ElectricLamp) {
+        this.lamp = ElectricLamp
+        this.status = true
+      }
+      this.getStatus = function () {
+        if(this.status) {
+          console.log(this.lamp.name)
+          console.log(this.lamp.status)
+        }
+        else {
+          console.log("chua ket noi voi bong den")
+        }
+      }
+      this.switchOn = function () {
+        if(this.status) {
+          this.lamp.turnOn();
+          this.getStatus();
+        }
+        
+      }
+      this.switchOff = function () {
+        if(this.status) {
+          this.lamp.turnOff();
+          this.getStatus();
+        }
+        
+      }
+
+    }
+    
+    let lamp = new ElectricLamp("soitoc")
+    
+    let button = new SwitchButton();
+    button.connectToLamp(lamp);
+    button.switchOff();
+    button.switchOn();
+
+    
+
+    
+  </script>
+</body>
+</html>

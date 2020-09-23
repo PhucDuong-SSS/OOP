@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Phát triển ứng dụng mô phỏng lại quá trình mèo bắt chuột và ăn chuột.
+    </title>
+  </head>
+  <body>
+    <script>
+      let Rat = function (name, weight, speed) {
+        this.name = name;
+        this.weight = weight;
+        this.speed = speed;
+        this.status = true;
+
+        this.speak = function () {
+          console.log("chít chít");
+        };
+        this.setSpeed = function (speed) {
+          this.speed = speed;
+        };
+      };
+
+      let Cat = function (name, weight, maxSpeed) {
+        this.name = name;
+        this.weight = weight;
+        this.maxSpeed = maxSpeed;
+
+        this.speak = function () {
+          console.log("MeoMeo");
+        };
+        this.setMaxSpeed = function (maxSpeed) {
+          this.maxSpeed = maxSpeed;
+        };
+
+        this.catchRat = function (rat) {
+          this.rat = rat;
+          if (this.maxSpeed > this.rat.speed) {
+            console.log(`${this.rat.name} da bi bat`);
+          } else {
+            console.log(`${this.rat.name} chay nhanh qua ko bat dc`);
+          }
+        };
+        this.eatRat = function () {
+          if (this.rat.status) {
+            this.rat.status = false;
+            this.weight += this.rat.weight;
+            this.getStatus();
+          } else {
+            console.log("Chuot da chet roi,thit ko tuoi");
+          }
+        };
+
+        this.getStatus = function () {
+          console.log(`Khoi luong meo ${this.weight}`);
+          console.log(`Toc do chay cua meo ${this.maxSpeed}`);
+        };
+      };
+
+      let rat = new Rat("jerry", 1, 10);
+      let cat = new Cat("tom", 5, 30);
+
+      cat.catchRat(rat);
+      cat.eatRat();
+      cat.eatRat();
+    </script>
+  </body>
+</html>

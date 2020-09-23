@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function Mobile(battery, status) {
+        this.battery = battery;
+        this.textingMemory = [];
+        this.receiveMsg = [];
+        this.receiveMemory = [];
+        this.sentMemory = [];
+        this.sentMsg = [];
+        this.status = status;
+
+        this.checkStatus = () => this.status;
+
+        this.setStatus = (status) => {
+          this.status = status;
+        };
+
+        this.chargeBattery = () => {
+          this.battery = 100;
+        };
+
+        this.textingMessage = (texting) => {
+          if (this.status == "on" && this.battery > 0) {
+            this.sentMsg = [];
+            this.sentMsg.push(texting);
+            this.textingMemory.push(texting);
+            this.battery--;
+          }
+        };
+        this.sentMessage = () => {
+          if (this.status == "on" && this.battery > 0) {
+            this.sentMemory.push(this.sentMsg.join());
+            return this.sentMsg;
+          }
+        };
+        this.receiveMessage = (content) => {
+          if (this.status == "on" && this.battery > 0) {
+            this.receiveMsg = [];
+            this.receiveMsg.push(content.join());
+            this.receiveMemory.push(content.join());
+            this.battery--;
+
+            return this.receiveMsg;
+          }
+        };
+
+        this.showSentMessage = () => {
+          if (this.status == "on" && this.battery > 0) {
+            this.battery--;
+            return this.sentMemory;
+          }
+        };
+
+        this.showReceiveMessage = () => {
+          if (this.status == "on" && this.battery > 0) {
+            this.battery--;
+            return this.receiveMemory;
+          }
+        };
+      }
+
+      let nokia = new Mobile(0, "on");
+      let iphone = new Mobile(0, "on");
+      nokia.textingMessage("duong ngoc phuc");
+      nokia.sentMessage();
+      nokia.textingMessage("duong ngoc thias");
+      iphone.receiveMessage(nokia.sentMessage());
+      let showiphonereceive = iphone.showReceiveMessage();
+      console.log(showiphonereceive);
+      let shownokiasent = nokia.showSentMessage();
+      console.log(shownokiasent);
+    </script>
+  </body>
+</html>
